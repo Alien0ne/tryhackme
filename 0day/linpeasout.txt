@@ -1,0 +1,391 @@
+./linpeas.sh
+ Starting linpeas. Caching Writable Folders...
+
+                     ▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+             ▄▄▄▄▄▄▄             ▄▄▄▄▄▄▄▄▄
+      ▄▄▄▄▄▄▄      ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄
+  ▄▄▄▄     ▄ ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ ▄▄▄▄▄▄▄
+  ▄    ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+  ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ ▄▄▄▄▄       ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+  ▄▄▄▄▄▄▄▄▄▄▄          ▄▄▄▄▄▄               ▄▄▄▄▄▄ ▄
+  ▄▄▄▄▄▄              ▄▄▄▄▄▄▄▄                 ▄▄▄▄ 
+  ▄▄                  ▄▄▄ ▄▄▄▄▄                  ▄▄▄
+  ▄▄                ▄▄▄▄▄▄▄▄▄▄▄▄                  ▄▄
+  ▄            ▄▄ ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄   ▄▄
+  ▄      ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+  ▄▄▄▄▄▄▄▄▄▄▄▄▄▄                                ▄▄▄▄
+  ▄▄▄▄▄  ▄▄▄▄▄                       ▄▄▄▄▄▄     ▄▄▄▄
+  ▄▄▄▄   ▄▄▄▄▄                       ▄▄▄▄▄      ▄ ▄▄
+  ▄▄▄▄▄  ▄▄▄▄▄        ▄▄▄▄▄▄▄        ▄▄▄▄▄     ▄▄▄▄▄
+  ▄▄▄▄▄▄  ▄▄▄▄▄▄▄      ▄▄▄▄▄▄▄      ▄▄▄▄▄▄▄   ▄▄▄▄▄ 
+   ▄▄▄▄▄▄▄▄▄▄▄▄▄▄        ▄          ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ 
+  ▄▄▄▄▄▄▄▄▄▄▄▄▄                       ▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+  ▄▄▄▄▄▄▄▄▄▄▄                         ▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+  ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄            ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+   ▄▄▄▄▄▄   ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ ▄▄▄▄▄▄▄▄▄▄▄▄▄
+        ▄▄▄▄▄▄▄▄      ▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄ 
+             ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+    linpeas v2.8.6 by carlospolop
+
+ADVISORY: This script should be used for authorized penetration testing and/or educational purposes only. Any misuse of this software will not be the responsibility of the author or of any other collaborator. Use it at your own networks and/or with the network owner's permission.
+
+Linux Privesc Checklist: https://book.hacktricks.xyz/linux-unix/linux-privilege-escalation-checklist
+ LEGEND:
+  RED/YELLOW: 99% a PE vector
+  RED: You must take a look at it
+  LightCyan: Users with console
+  Blue: Users without console & mounted devs
+  Green: Common things (users, groups, SUID/SGID, mounts, .sh scripts, cronjobs) 
+  LightMangeta: Your username
+
+
+====================================( Basic information )=====================================
+OS: Linux version 3.13.0-32-generic (buildd@kissel) (gcc version 4.8.2 (Ubuntu 4.8.2-19ubuntu1) ) #57-Ubuntu SMP Tue Jul 15 03:51:08 UTC 2014
+User & Groups: uid=33(www-data) gid=33(www-data) groups=33(www-data)
+Hostname: ubuntu
+Writable folder: /run/shm
+[+] /bin/ping is available for network discovery (linpeas can discover hosts, learn more with -h)
+[+] /bin/nc is available for network discover & port scanning (linpeas can discover hosts and scan ports, learn more with -h)
+
+
+Caching directories . . . . . . . . . . . . . . . . . . . . . . . DONE
+====================================( System Information )====================================
+[+] Operative system
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#kernel-exploits
+Linux version 3.13.0-32-generic (buildd@kissel) (gcc version 4.8.2 (Ubuntu 4.8.2-19ubuntu1) ) #57-Ubuntu SMP Tue Jul 15 03:51:08 UTC 2014
+Distributor ID:	Ubuntu
+Description:	Ubuntu 14.04.1 LTS
+Release:	14.04
+Codename:	trusty
+
+[+] Sudo version
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#sudo-version
+Sudo version 1.8.9p5
+
+[+] PATH
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#writable-path-abuses
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/system/bin:/system/sbin:/system/xbin
+New path exported: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/system/bin:/system/sbin:/system/xbin
+
+[+] Date
+Sat Nov  7 23:07:22 PST 2020
+
+[+] System stats
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/xvda1       18G  1.4G   16G   8% /
+none            4.0K     0  4.0K   0% /sys/fs/cgroup
+udev            486M  4.0K  486M   1% /dev
+tmpfs           100M  324K   99M   1% /run
+none            5.0M     0  5.0M   0% /run/lock
+none            497M     0  497M   0% /run/shm
+none            100M     0  100M   0% /run/user
+             total       used       free     shared    buffers     cached
+Mem:       1016268     345696     670572        580      52940     105328
+-/+ buffers/cache:     187428     828840
+Swap:      2094076          0    2094076
+
+[+] CPU info
+Architecture:          x86_64
+CPU op-mode(s):        32-bit, 64-bit
+Byte Order:            Little Endian
+CPU(s):                1
+On-line CPU(s) list:   0
+Thread(s) per core:    1
+Core(s) per socket:    1
+Socket(s):             1
+NUMA node(s):          1
+Vendor ID:             GenuineIntel
+CPU family:            6
+Model:                 63
+Stepping:              2
+CPU MHz:               2400.026
+BogoMIPS:              4800.05
+Hypervisor vendor:     Xen
+Virtualization type:   full
+L1d cache:             32K
+L1i cache:             32K
+L2 cache:              256K
+L3 cache:              30720K
+NUMA node0 CPU(s):     0
+
+[+] Environment
+[i] Any private information inside environment variables?
+HISTFILESIZE=0
+USER=www-data
+SHLVL=2
+HOME=/var/www
+_=./linpeas.sh
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/system/bin:/system/sbin:/system/xbin
+LANG=C
+HISTSIZE=0
+HISTFILE=/dev/null
+
+[+] Searching Signature verification failed in dmseg
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#dmesg-signature-verification-failed
+ Not Found
+
+[+] AppArmor enabled? .............. You do not have enough privilege to read the profile set.
+apparmor module is loaded.
+[+] grsecurity present? ............ grsecurity Not Found
+[+] PaX bins present? .............. PaX Not Found
+[+] Execshield enabled? ............ Execshield Not Found
+[+] SELinux enabled? ............... sestatus Not Found
+[+] Is ASLR enabled? ............... Yes
+[+] Printer? ....................... lpstat Not Found
+[+] Is this a container? ........... No
+[+] Any running containers? ........ No
+
+
+=========================================( Devices )==========================================
+[+] Any sd*/disk* disk in /dev? (limit 20)
+disk
+
+[+] Unmounted file-system?
+[i] Check if you can mount umounted devices
+UUID=df519a5f-788a-4510-8e6c-4492ef33f232	/	ext4	errors=remount-ro	0 1
+UUID=13e22641-7ee1-41dd-9123-168df0e56f11	none	swap	sw	0 0
+
+
+====================================( Available Software )====================================
+[+] Useful software
+/bin/nc
+/bin/netcat
+/usr/bin/wget
+/usr/bin/curl
+/bin/ping
+/usr/bin/gcc
+/usr/bin/base64
+/usr/bin/python
+/usr/bin/python2
+/usr/bin/python3
+/usr/bin/python2.7
+/usr/bin/perl
+/usr/bin/sudo
+
+[+] Installed Compiler
+ii  gcc                                 4:4.8.2-1ubuntu6              amd64        GNU C compiler
+ii  gcc-4.8                             4.8.4-2ubuntu1~14.04.4        amd64        GNU C compiler
+/usr/bin/gcc
+
+
+================================( Processes, Cron, Services, Timers & Sockets )================================
+[+] Cleaned processes
+[i] Check weird & unexpected proceses run by root: https://book.hacktricks.xyz/linux-unix/privilege-escalation#processes
+message+   430  0.0  0.1  39220  1028 ?        Ss   22:06   0:00 dbus-daemon --system --fork
+root         1  0.0  0.2  33376  2636 ?        Ss   22:05   0:00 /sbin/init
+root       296  0.0  0.1  19876  1168 ?        S    22:06   0:00 upstart-udev-bridge --daemon[0m
+root       300  0.0  0.1  51424  1700 ?        Ss   22:06   0:00 /lib/systemd/systemd-udevd --daemon
+root       442  0.0  0.1  35028  1564 ?        Ss   22:06   0:00 /lib/systemd/systemd-logind
+root       528  0.0  0.0  15544   792 ?        S    22:06   0:00 upstart-file-bridge --daemon[0m
+root       534  0.0  0.0  15264   628 ?        S    22:06   0:00 upstart-socket-bridge --daemon[0m
+root       561  0.0  0.2  10232  2884 ?        Ss   22:06   0:00 dhclient -1 -v -pf /run/dhclient.eth0.pid -lf /var/lib/dhcp/dhclient.eth0.leases eth0
+root       707  0.0  0.0  15820   948 tty4     Ss+  22:06   0:00 /sbin/getty -8 38400 tty4
+root       709  0.0  0.0  15820   956 tty5     Ss+  22:06   0:00 /sbin/getty -8 38400 tty5
+root       712  0.0  0.0  15820   960 tty2     Ss+  22:06   0:00 /sbin/getty -8 38400 tty2
+root       713  0.0  0.0  15820   956 tty3     Ss+  22:06   0:00 /sbin/getty -8 38400 tty3
+root       715  0.0  0.0  15820   956 tty6     Ss+  22:06   0:00 /sbin/getty -8 38400 tty6
+root       738  0.0  0.3  61368  3052 ?        Ss   22:06   0:00 /usr/sbin/sshd -D
+root       743  0.0  0.0  23656   876 ?        Ss   22:06   0:00 cron
+root       829  0.0  0.2  75520  2708 ?        Ss   22:06   0:00 /usr/sbin/apache2 -k start
+root       943  0.0  0.0  15820   956 tty1     Ss+  22:06   0:00 /sbin/getty -8 38400 tty1
+syslog     495  0.0  0.3 255844  3412 ?        Ssl  22:06   0:00 rsyslogd
+www-data   832  0.0  0.1  75260  1732 ?        S    22:06   0:00 /usr/sbin/apache2 -k start
+www-data  1083  0.3  0.6 431540  6760 ?        Sl   22:13   0:11 /usr/sbin/apache2 -k start
+www-data  1200  0.3  0.6 365916  6152 ?        Sl   22:23   0:08 /usr/sbin/apache2 -k start
+www-data  1677  0.2  0.5 497060  5880 ?        Sl   22:25   0:06 /usr/sbin/apache2 -k start
+www-data  1826  0.0  0.0   9520   632 ?        S    22:55   0:00 /bin/bash /usr/lib/cgi-bin/test.cgi
+www-data  1827  0.0  0.1   1192  1024 ?        S    22:55   0:00 /tmp/iWkRb
+www-data  1828  0.0  0.0   4448   648 ?        S    22:56   0:00 /bin/sh
+www-data  1834  0.0  0.1  18148  1964 ?        S    22:58   0:00 bash -i
+www-data  1856  0.0  0.1  18148  1972 ?        S    23:01   0:00 bash -i
+www-data  1884  0.0  0.1   4752  1108 ?        S    23:07   0:00 /bin/sh ./linpeas.sh
+www-data  2439  0.0  0.1  15572  1144 ?        R    23:07   0:00 ps aux
+www-data  2441  0.0  0.0  12872   776 ?        S    23:07   0:00 sort
+
+[+] Binary processes permissions
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#processes
+-rwxr-xr-x 1 root     root     1017016 Apr 23  2014 /bin/bash
+lrwxrwxrwx 1 root     root           4 Sep  2 08:41 /bin/sh -> dash
+-rwxr-xr-x 1 root     root      252056 Jun 19  2014 /lib/systemd/systemd-logind
+-rwxr-xr-x 1 root     root      239896 Jun 19  2014 /lib/systemd/systemd-udevd
+-rwxr-xr-x 2 root     root       32112 Jun  3  2014 /sbin/getty
+-rwxr-xr-x 1 root     root      265848 Jul 18  2014 /sbin/init
+-rwxrwxrwx 1 www-data www-data     207 Nov  7 22:55 /tmp/iWkRb
+-rwxr-xr-x 1 root     root      654008 Apr  3  2019 /usr/sbin/apache2
+-rwxr-xr-x 1 root     root      766848 Mar  4  2019 /usr/sbin/sshd
+
+[+] Processes with credentials in memory (root req)
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#credentials-from-process-memory
+gdm-password Not Found
+gnome-keyring-daemon Not Found
+lightdm Not Found
+vsftpd Not Found
+apache2 process found (dump creds from memory as root)
+sshd Not Found
+
+[+] Cron jobs
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#scheduled-cron-jobs
+-rw-r--r-- 1 root root  722 Feb  8  2013 /etc/crontab
+
+/etc/cron.d:
+total 12
+drwxr-xr-x  2 root root 4096 Sep  2 08:41 .
+drwxr-xr-x 86 root root 4096 Nov  7 22:06 ..
+-rw-r--r--  1 root root  102 Feb  8  2013 .placeholder
+
+/etc/cron.daily:
+total 68
+drwxr-xr-x  2 root root  4096 Sep  2 09:07 .
+drwxr-xr-x 86 root root  4096 Nov  7 22:06 ..
+-rw-r--r--  1 root root   102 Feb  8  2013 .placeholder
+-rwxr-xr-x  1 root root   625 Apr  3  2019 apache2
+-rwxr-xr-x  1 root root 15481 Apr 10  2014 apt
+-rwxr-xr-x  1 root root   314 Feb 17  2014 aptitude
+-rwxr-xr-x  1 root root   355 Jun  4  2013 bsdmainutils
+-rwxr-xr-x  1 root root   256 Mar  7  2014 dpkg
+-rwxr-xr-x  1 root root   372 Jan 22  2014 logrotate
+-rwxr-xr-x  1 root root  1261 Apr 10  2014 man-db
+-rwxr-xr-x  1 root root   435 Jun 20  2013 mlocate
+-rwxr-xr-x  1 root root   249 Feb 16  2014 passwd
+-rwxr-xr-x  1 root root  2417 May 13  2013 popularity-contest
+-rwxr-xr-x  1 root root   328 Jul 18  2014 upstart
+
+/etc/cron.hourly:
+total 12
+drwxr-xr-x  2 root root 4096 Sep  2 08:41 .
+drwxr-xr-x 86 root root 4096 Nov  7 22:06 ..
+-rw-r--r--  1 root root  102 Feb  8  2013 .placeholder
+
+/etc/cron.monthly:
+total 12
+drwxr-xr-x  2 root root 4096 Sep  2 08:41 .
+drwxr-xr-x 86 root root 4096 Nov  7 22:06 ..
+-rw-r--r--  1 root root  102 Feb  8  2013 .placeholder
+
+/etc/cron.weekly:
+total 24
+drwxr-xr-x  2 root root 4096 Sep  2 08:42 .
+drwxr-xr-x 86 root root 4096 Nov  7 22:06 ..
+-rw-r--r--  1 root root  102 Feb  8  2013 .placeholder
+-rwxr-xr-x  1 root root  730 Feb 23  2014 apt-xapian-index
+-rwxr-xr-x  1 root root  427 Apr 16  2014 fstrim
+-rwxr-xr-x  1 root root  771 Apr 10  2014 man-db
+
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+
+[+] Services
+[i] Search for outdated versions
+ [ + ]  apache2
+ [ - ]  apparmor
+ [ + ]  cron
+ [ - ]  dbus
+ [ + ]  friendly-recovery
+ [ - ]  grub-common
+ [ - ]  procps
+ [ + ]  resolvconf
+ [ - ]  rsync
+ [ + ]  rsyslog
+ [ - ]  ssh
+ [ - ]  sudo
+ [ - ]  udev
+ [ - ]  urandom
+ [ - ]  x11-common
+
+[+] Systemd PATH
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#systemd-path-relative-paths
+
+[+] Analyzing .service files
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#services
+You can't write on systemd PATH
+
+[+] System timers
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#timers
+
+[+] Analyzing .timer files
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#timers
+
+[+] Analyzing .socket files
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#sockets
+
+[+] HTTP sockets
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#sockets
+
+[+] D-Bus config files
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#d-bus
+
+[+] D-Bus Service Objects list
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#d-bus
+busctl Not Found
+
+
+===================================( Network Information )====================================
+[+] Hostname, hosts and DNS
+ubuntu
+127.0.0.1	localhost
+127.0.1.1	ubuntu
+
+::1     localhost ip6-localhost ip6-loopback
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+nameserver 10.0.0.2
+search eu-west-1.compute.internal
+
+[+] Content of /etc/inetd.conf & /etc/xinetd.conf
+/etc/inetd.conf Not Found
+
+[+] Interfaces
+# symbolic names for networks, see networks(5) for more information
+link-local 169.254.0.0
+eth0      Link encap:Ethernet  HWaddr 02:12:cc:ee:52:8d  
+          inet addr:10.10.49.1  Bcast:10.10.255.255  Mask:255.255.0.0
+          inet6 addr: fe80::12:ccff:feee:528d/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:9001  Metric:1
+          RX packets:591623 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:570235 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:78142783 (78.1 MB)  TX bytes:244990835 (244.9 MB)
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+
+
+[+] Networks and neighbours
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         ip-10-10-0-1.eu 0.0.0.0         UG    0      0        0 eth0
+10.10.0.0       *               255.255.0.0     U     0      0        0 eth0
+Address                  HWtype  HWaddress           Flags Mask            Iface
+ip-10-10-0-1.eu-west-1.  ether   02:c8:85:b5:5a:aa   C                     eth0
+
+[+] Iptables rules
+iptables rules Not Found
+
+[+] Active Ports
+[i] https://book.hacktricks.xyz/linux-unix/privilege-escalation#open-ports
+Active Internet connections (servers and established)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      -               
+tcp        0   4791 10.10.49.1:34477        10.8.114.228:1234       ESTABLISHED 1827/iWkRb      
+tcp6       0      0 :::80                   :::*                    LISTEN      -               
+tcp6       0      0 :::22                   :::*                    LISTEN      -               
+udp        0      0 0.0.0.0:54845           0.0.0.0:*                           -               
+udp        0      0 0.0.0.0:68              0.0.0.0:*                           -               
+udp6       0      0 :::3594                 :::*                                -               
+
+[+] Can I sniff with tcpdump?
+No
+
+[+] Internet Access?
+icmp is not available
+Port 80 is not accessible
+Port 443 is not accessible
+
+
