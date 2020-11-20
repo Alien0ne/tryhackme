@@ -1,0 +1,19 @@
+[0;31m[1m[*] OS based on TTL[0m[0m
+Linux
+[0;31m[1m[*] Full TCP Scan[0m[0m
+[0;33m[1mOpen ports: 22,21,80[0m[0m
+PORT   STATE SERVICE VERSION
+21/tcp open  ftp     vsftpd 3.0.3
+22/tcp open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 d8:52:77:a2:bc:18:e8:3f:52:e5:d1:a5:20:74:7a:9d (RSA)
+|   256 52:60:6b:6c:2e:52:4e:a5:54:29:92:85:27:4e:ef:5a (ECDSA)
+|_  256 91:48:53:de:54:0b:a6:be:20:18:23:ae:71:11:19:e0 (ED25519)
+80/tcp open  http    Node.js Express framework
+|_http-title: Avengers! Assemble!
+Service Info: OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
+[94m[*] Execution time in seconds:
+	 TTL: 1
+	 Furious: 13
+	 Nmap: 14
+	 [0;34m[1mTotal: 27[0m[0m

@@ -1,0 +1,8 @@
+/Home (Status: 302)
+/assets (Status: 301)
+/css (Status: 301)
+/home (Status: 302)
+/img (Status: 301)
+/js (Status: 301)
+/logout (Status: 302)
+/portal (Status: 200)
